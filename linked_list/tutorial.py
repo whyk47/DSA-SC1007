@@ -95,7 +95,6 @@ def num_even_nodes(ll: LinkedList) -> int:
     return n
 
 def move_even_items_to_back(ll: LinkedList) -> LinkedList:
-    # add your code here #
     i, n = 0, num_even_nodes(ll)
     while i < ll.size and n > 0:
         node = ll.findNode(i)
@@ -108,15 +107,17 @@ def move_even_items_to_back(ll: LinkedList) -> LinkedList:
     return ll
 
 def move_max_to_front(ll: LinkedList) -> LinkedList:
-    assert ll.head
-    max_val, max_index = ll.head.data, 0
-    for i in range(ll.size):
-        node = ll.findNode(i)
-        if max_val < node.data:
-            max_val, max_index = node.data, i
-    ll.removeNode(max_index)
-    ll.insertNode(max_val, 0)
+    pre_max, max_node, cur = None, ll.head, ll.head
+    while cur.next:
+        if cur.next.data > max_node.data:
+            pre_max, max_node = cur, cur.next
+        cur = cur.next
+    if pre_max:
+        pre_max.next = max_node.next
+        max_node.next = ll.head
+        ll.head = max_node
     return ll
+    
 
 def remove_duplicates_sorted_ll(ll: LinkedList) -> LinkedList:
     prev = None
@@ -182,11 +183,11 @@ q->...->r->s->...
            u <- t
 
 T2Q1 (Aptr, Bptr)
-A->...->B->...
+B->...->A->...
         ↑  ↓
          <- 
 T2Q1 (Bptr, Aptr)
-B->...->A->...
+A->...->B->...
         ↑  ↓
          <- 
 """
