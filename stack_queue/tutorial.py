@@ -151,13 +151,9 @@ def sort_stack(stack: Stack) -> Stack:
     temp = Stack()
     while not stack.is_empty():
         item = stack.pop()
-        count = 0
         while not temp.is_empty() and item > temp.peek():
             stack.push(temp.pop())
-            count += 1
         temp.push(item)
-        for _ in range(count):
-            temp.push(stack.pop())
     return temp
 
 
@@ -193,7 +189,7 @@ if __name__ == "__main__":
 
 
 """
-Q4a: x = a + b * c % d >> e -> = x >> + a % * b c d e
+Q4a: x = a + b * c % d >> e -> xabc*d%+e>>=
 b: = y && << a b >> c + d e -> y = a << b && c >> d + e
-c: x a b c * d % + e >> = -> = >> e + % d * c b a x
+c: x a b c * d % + e >> = -> =x>>+a%*bcde
 """
