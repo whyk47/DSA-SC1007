@@ -2,7 +2,7 @@ import time
 import matplotlib.pyplot as plt
 
 def recursive_fibonacci(n):
-    # O(n^2)
+    # O(2^n)
     if n <= 0:
         return 0
     if n == 1 or n == 2:
