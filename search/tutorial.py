@@ -1,10 +1,18 @@
-# Q1a: When every element of L is the last element of M
-# b: Suppose the # of elements in L and M are a and b respectively. 
-# Total comparisons = ab
-# c: f(a, b) = c0 + a(c1 + bc2)
-# d: O(ab)
+# Q1a: Let |L| = a and |M| = b
+# When the 1st a-1 elements from L are the last a-1 elements from M in reverse order, 
+# and the last element in L is not in M
+# b: total comparisons = b + b-1 + ... + b-a-2 + b = ab - (1+2+...+a-2)
+#                      = ab - (a-2)/2 * (a-1) = theta(ab)
+# c: f(a, b) = ab - (a-2)/2 * (a-1)
+# d: theta(ab)
 
-# Q2a: Inner loop: N/2, Outer loop: N/3, total: N^2/6, O(N^2)
+# Q2a: let M be the last iteration of the inner loop
+# 2^(M-1) <= N, M-1 <= log2(N)
+# Since M is an integer, M = floor(log2(n) + 1)
+# Similarly, let H be the last iteration of the outer loop
+# H = floor(log3(n) + 1) 
+# total: floor(log2(n) + 1) * floor(log3(n) + 1) = theta(log(N)^2)
+
 # Q2b: W(N) = N + 2W(N-1) = N + 2(N-1 + 2W(N-2)) = N + 2(N-1) + 4W(N-3)
 #           = ... = N + 2(N-1) + 2^2 * (N-2) + ... + 2^(N-1) * (1) 
 #           = Summation from 0 to N-1 (2^k * (N-k))
